@@ -208,7 +208,7 @@ function _prepare_args($array)
 */
 function _show_usage($error = null)
 {
-    if (!is_null($error)) {
+    if (isset($error)) {
 
         fputs(STDERR, "\nError: " . $error->getMessage() . "\n\n");
         exit(-1);
