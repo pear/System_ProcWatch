@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<!-- $Revision: 1.4 $ -->
+<!-- $Revision: 1.5 $ -->
 <package version="1.0">
   <name>System_ProcWatch</name>
   <license>PHP</license>
@@ -20,7 +20,7 @@ A simple 'ps' fake for WinNT can be found at http://dev.iworks.at/ps/ps.zip
     </maintainer>
   </maintainers>
   <release>
-    <version>0.4.0</version>
+    <version>0.4</version>
     <date>2004-02-03</date>
     <state>beta</state>
     <notes>
