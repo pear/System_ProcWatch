@@ -124,7 +124,7 @@ if ($xmlvalid->isValid($dtdfile, $xmlfile)) {
 
 } else {
 
-    fputs(STDERR, $xmlvalid->getMessage());
+    $verbose && fputs(STDERR, $xmlvalid->getMessage());
 
     $str =  "\nERRRRR...\n\nConfiguration from $xmlfile seems ".
             "NOT valid according to $dtdfile\n\n";
