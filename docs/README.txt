@@ -219,7 +219,7 @@ data/
       <watch name="httpd">
 
         <!-- Look for PCRE "/httpd/" in ps' column "COMMAND" -->
-        <pattern match="command">/httpd/</command>
+        <pattern match="command">/httpd/</pattern>
 
         <!-- If less than 10 httpd processes have been found... -->
         <condition type="presence">
@@ -268,11 +268,8 @@ data/
               found. They are enclosed by single quotes and parenthesis.
               Example: '(433, 444, 455, 466)'
 
-    $procs  - This is a somewhat serialized php array in string format
-              containing all information gained from ps and looks like:
-              array(array('pid' => 344, 'command' => '/usr/sbin/httpd' ...))
-              It is only available in php executes and can easily be used
-              in function callbacks:
+    $procs  - This is a string similar to 'unserialize(...)', where "..." is
+    					the output of serialize($found_processes)
               <execute type="php">get_procs($procs);</execute>
 
 
