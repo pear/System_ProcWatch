@@ -42,9 +42,11 @@ class System_ProcWatch_Config
     /**
     * Get config array from XML file
     *
+    * @throws   PEAR_Error
     * @static
     * @access   public
     * @return   mixed
+    * @param    string  $file   path to XML file
     */
     function fromXmlFile($file)
     {
@@ -58,9 +60,11 @@ class System_ProcWatch_Config
     /**
     * Get config array from XML string
     *
+    * @throws   PEAR_Error
     * @static
     * @access   public
     * @return   mixed
+    * @param    string  $xml    XML string
     */
     function fromXml($xml)
     {
@@ -77,9 +81,11 @@ class System_ProcWatch_Config
     /**
     * Get config array from INI file
     *
+    * @throws   PEAR_Error
     * @static
     * @access   public
     * @return   mixed
+    * @param    string  $file   path to INI file
     */
     function fromIniFile($file)
     {
@@ -137,9 +143,11 @@ class System_ProcWatch_Config
     * This method in fact does a sanity check on the supplied config array
     * and should only be used for testing purposes.
     * 
+    * @throws   PEAR_Error
     * @static
     * @access   public
     * @return   mixed
+    * @param    array   $array  config array to check
     */
     function fromArray($array)
     {
