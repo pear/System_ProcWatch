@@ -333,7 +333,7 @@ class System_ProcWatch
         }
         
         if (is_array($php_exec)) {
-            $procs = $this->parser->serializeArray(@$this->_procs[$job]);
+            $procs = 'unserialize(\'' . serialize(@$this->_procs[$job]) . '\'';
             foreach ($php_exec as $e) {
                 eval(
                     str_replace(
@@ -441,6 +441,19 @@ class System_ProcWatch
     * @param    array   $config     config array from System_ProcWatch_Config
     */
     function setConfig($config)
+    {
+        $this->_jobs = array();
+        $this->addConfig($config);
+    }
+    
+    /**
+    * Add configuration
+    *
+    * @access   public
+    * @return   void
+    * @param    array   $config     config array from System_ProcWatch_Config
+    */
+    function addConfig($config)
     {
         foreach ($config as $job => $arrays) {
             $this->_jobs[]      = $job;
