@@ -85,6 +85,7 @@ class System_ProcWatch_Parser
         if (empty($ps_args)) {
             $ps_args = $this->_args;
         }
+        putenv('COLUMNS=1000');
         return shell_exec("ps $ps_args");
     }
     
@@ -123,7 +124,7 @@ class System_ProcWatch_Parser
     function &getParsedData($ps_args = 'aux', $refresh = false)
     {
         if ($refresh || empty($this->_procs)) {
-            $this->_procs = &$this->parse($this->fetch());
+            $this->_procs = &$this->parse($this->fetch($ps_args));
         }
         
         return $this->_procs;
@@ -138,9 +139,7 @@ class System_ProcWatch_Parser
     */
     function getProcByPid($pid)
     {
-        $procs = &$this->getParsedData();
-        
-        foreach ($procs as $proc) {
+        foreach ($this->getParsedData() as $proc) {
             if ($proc['pid'] == $pid) {
                 return $proc;
             }
@@ -158,15 +157,12 @@ class System_ProcWatch_Parser
     */
     function getProcInfo($pattern, $search)
     {
-        $procs  = &$this->getParsedData();
         $result = array();
-        
-        foreach ($procs as $p) {
+        foreach ($this->getParsedData() as $p) {
             if (preg_match($pattern, @$p[$search])) {
                 $result[] = $p;
             }
         }
-        
         return $result;
     }    
 }
