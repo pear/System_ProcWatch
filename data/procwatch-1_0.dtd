@@ -1,0 +1,55 @@
+<!--
+
+    +----------------------------------------------------------------------+
+    | DTD for procwatchs config files                                      |
+    +----------------------------------------------------------------------+
+    | This source file is subject to version 3.0 of the PHP license,       |
+    | that is available at http://www.php.net/license/3_0.txt              |
+    | If you did not receive a copy of the PHP license and are unable      |
+    | to obtain it through the world-wide-web, please send a note to       |
+    | license@php.net so we can mail you a copy immediately.               |
+    +----------------------------------------------------------------------+
+    | Copyright (c) 2003 Michael Wallner <mike@iworks.at>                  |
+    +----------------------------------------------------------------------+
+   
+    $Id: procwatch-1_0.dtd,v 1.1 2003-11-21 13:56:36 mike Exp $
+
+-->
+
+<!ELEMENT procwatch (watch)+>
+<!ATTLIST procwatch
+  version CDATA     "1.0"
+>
+
+<!ELEMENT watch     (pattern, condition, execute+)>
+<!ATTLIST watch
+  name    CDATA     #REQUIRED
+>
+
+<!ELEMENT pattern   (#PCDATA)>
+<!ATTLIST pattern
+  match   CDATA     #REQUIRED
+>
+
+<!ELEMENT condition (max|min|sum|is|isnot)*>
+<!ATTLIST condition
+  type    CDATA     #REQUIRED
+  attr    CDATA     #IMPLIED
+>
+
+<!ELEMENT execute   (#PCDATA)>
+<!ATTLIST execute
+  type    CDATA     #REQUIRED
+>
+
+<!ELEMENT max       (#PCDATA)>
+<!ELEMENT min       (#PCDATA)>
+<!ELEMENT sum       (#PCDATA)>
+<!ELEMENT is        (#PCDATA)>
+<!ELEMENT isnot     (#PCDATA)>
+
+<!ENTITY lt     "&#60;">
+<!ENTITY gt     "&#62;">
+<!ENTITY amp    "&#38;">
+<!ENTITY quot   "&#34;">
+

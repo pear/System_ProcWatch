@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- $Revision: 1.1 $ -->
+<package version="1.0">
+  <name>System_ProcWatch</name>
+  <license>PHP</license>
+  <summary>Monitor Processes</summary>
+  <description>
+With this package you can monitor running processes based upon an XML configuration file, where you define patterns, conditions and actions.
+  </description>
+  <maintainers>
+    <maintainer>
+      <user>mike</user>
+      <name>Michael Wallner</name>
+      <email>mike@php.net</email>
+      <role>lead</role>
+    </maintainer>
+  </maintainers>
+  <release>
+    <version>0.3</version>
+    <date>2003-11-21</date>
+    <state>beta</state>
+    <notes>
+First PEAR release.
+    </notes>
+    <filelist>
+      <dir role="php" name="/" baseinstalldir="System">
+        <file>ProcWatch.php</file>
+        <dir name="ProcWatch">
+          <file>Parser.php</file>
+          <file>Config.php</file>
+          <dir name="Config">
+            <file>Parser.php</file>
+          </dir>
+        </dir>
+      </dir>
+      <file role="script" baseinstalldir="/" name="scripts/system-procwatch.php" install-as="procwatch">
+        <replace type="pear-config" from="@PHP-BIN@" to="php_bin"/>
+        <replace type="package-info" from="@VERSION@" to="version"/>
+        <replace type="package-info" from="@DATE@" to="release_date"/>
+      </file>
+      <file role="script" baseinstalldir="/" name="scripts/system-procwatch_lint.php" install-as="procwatch-lint">
+        <replace type="pear-config" from="@PHP-BIN@" to="php_bin"/>
+        <replace type="pear-config" from="@DATADIR@" to="data_dir"/>
+        <replace type="package-info" from="@VERSION@" to="version"/>
+        <replace type="package-info" from="@DATE@" to="release_date"/>
+      </file>
+      <file role="doc" name="docs/README.txt" install-as="README.txt"/>
+      <file role="doc" name="docs/examples/EXAMPLE.txt" install-as="examples/EXAMPLE.txt"/>
+      <file role="doc" name="docs/examples/example.xml" install-as="examples/example.xml">
+        <replace type="pear-config" from="@DATADIR@" to="data_dir"/>
+      </file>
+      <file role="doc" name="docs/examples/example.ini" install-as="examples/example.ini"/>
+      <file role="data" name="data/procwatch-1_0.dtd" install-as="procwatch-1_0.dtd">
+      </file>
+    </filelist>
+  </release>
+  <deps>
+    <dep type="pkg" rel="has">XML_Parser</dep>
+    <dep type="pkg" rel="has" optional="yes">XML_DTD</dep>
+    <dep type="pkg" rel="has" optional="yes">Console_Getopt</dep>
+  </deps>
+</package>

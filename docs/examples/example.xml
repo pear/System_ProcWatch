@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE procwatch SYSTEM "@DATADIR@/System_ProcWatch/procwatch-1_0.dtd">
+<procwatch>
+<!--
+  
+  SPECIAL VARIABLES
+  =================
+  
+  System_ProcWatch supplies the following special variables,
+  which will be replaced in the string to execute:
+  
+    $msg    - This contains a general message, what has happened.
+              It is quoted in single quotes for save usage and
+              is available in shell and php executes.
+    
+    $pids   - This contains all PIDs of the processes that have been
+              found. They are enclosed by single quotes and parenthesis.
+              Example: '(433, 444, 455, 466)'
+
+    $procs  - This is a somewhat serialized php array in string format
+              containing all information gained from ps and looks like:
+              array(array('pid' => 344, 'command' => '/usr/sbin/httpd' ...))
+              It is only available in php executes and can easily be used
+              in function callbacks:
+              <execute type="php">get_procs($procs);</execute>
+
+
+
+    IMPORTANT NOTE
+    ==============
+    
+    The values of the "match" attribute of the "pattern" element and the 
+    values of the "attr" attribute of the "condition" element are dependent 
+    on the output of ps - more exactly on the column heads of ps.
+    
+    Therefore System_ProcWatch and its configuration is highly adjustable.
+
+  ############################################################################
+
+    SOME EXAMPLE CONFIGURATIONS
+    ===========================
+    
+    This job looks for the count of running httpd processes by
+    matching the PCRE "/httpd/" against the COMMAND column of ps.
+  
+    If there are less than 10 or more than 30 httpd processes found
+    the speicified string is executed on the shell.
+-->
+  <watch name="httpd-count">
+    <pattern match="command">/httpd/</pattern>
+    <condition type="presence">
+      <min>10</min>
+      <max>30</max>
+    </condition>
+    <execute type="shell">echo $msg $pids &gt;&gt; /var/log/procwatch</execute>
+  </watch>
+
+<!--
+  This job looks for the amount of physical memory all httpd processes use
+  together by matching the PCRE "/httpd/" against the COMMAND column of ps.
+  
+  It adds all %MEM columns of ps that match the pattern together and compares
+  the reslut to the specified sum. If the result exceeds the sum the specified
+  string is executet on the shell.
+-->
+  <watch name="httpd-usage">
+    <pattern match="command">/httpd/</pattern>
+    <condition type="attr" attr="%mem">
+      <sum>5</sum>
+    </condition>
+    <execute type="shell">echo $msg $pids &gt;&gt; /var/log/procwatch</execute>
+  </watch>
+
+<!--
+  This job looks for zombie processes.
+  
+  It matches the PCRE "/Z/" against the STAT column of ps and executes the
+  specified string on the shell if more than 0 zombies have been found.
+-->
+  <watch name="ZOMBIES">
+    <pattern match="stat">/Z/</pattern>
+    <condition type="presence">
+      <max>0</max>
+    </condition>
+    <execute type="shell">echo $msg $pids &gt;&gt; /var/log/procwatch</execute>
+  </watch>
+
+<!--
+  This job looks for running processes.
+  
+  It matches the PCRE pattern "/R/" against the STAT column of ps and executes
+  the specified string on the shell if any running processes have been found.
+-->
+  <watch name="running">
+    <pattern match="stat">/R/</pattern>
+    <condition type="presence" />
+    <execute type="shell">echo $msg $pids &gt;&gt; /var/log/procwatch</execute>
+  </watch>
+
+</procwatch>

@@ -1,0 +1,23 @@
+
+README - Example Configuration for procwatch
+============================================
+
+Prerequisites:
+~~~~~~~~~~~~~~
+
+    PEAR::XML::Parser
+    PEAR::Console::Getopt
+
+Running the example configuration:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To run the example, just type the following on your shell prompt:
+
+# procwatch -x example.xml && tail /var/log/procwatch
+
+The example configuration looks for running httpd processes and their memory
+usage. You should see an entry in /var/log/procwatch for "httpd-count" if you
+are running less than 10 or more than 30 httpd processes. You also should see 
+an entry if all httpd processes use more than 5% of physical memory available.
+The provided example configuration also looks for running processes and zombies.
+Please have a look at example.xml for a short introduction.
