@@ -16,7 +16,7 @@
 /**
 * Requires System::ProcWatch::Parser
 */
-require_once('System/ProcWatch/Parser.php');
+require_once 'System/ProcWatch/Parser.php';
 
 /**
 * Constants

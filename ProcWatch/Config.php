@@ -16,7 +16,7 @@
 /**
 * Requires PEAR.
 */
-require_once('PEAR.php');
+require_once 'PEAR.php';
 
 /** 
 * System_ProcWatch_Config

@@ -169,4 +169,5 @@ class System_ProcWatch_Parser
         
         return $result;
     }    
+}
 ?>

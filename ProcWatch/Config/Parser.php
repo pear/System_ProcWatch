@@ -16,7 +16,7 @@
 /**
 * Requires XML::Parser
 */
-require_once('XML/Parser.php');
+require_once 'XML/Parser.php';
 
 /** 
 * System_ProcWatch_Config_Parser
