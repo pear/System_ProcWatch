@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<!-- $Revision: 1.1 $ -->
+<!-- $Revision: 1.2 $ -->
 <package version="1.0">
   <name>System_ProcWatch</name>
   <license>PHP</license>
   <summary>Monitor Processes</summary>
   <description>
-With this package you can monitor running processes based upon an XML configuration file, where you define patterns, conditions and actions.
+With this package you can monitor running processes based upon an XML configuration file, XML string, INI file or an array where you define patterns, conditions and actions.
   </description>
   <maintainers>
     <maintainer>
