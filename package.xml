@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<!-- $Revision: 1.3 $ -->
+<!-- $Revision: 1.4 $ -->
 <package version="1.0">
   <name>System_ProcWatch</name>
   <license>PHP</license>
@@ -7,7 +7,9 @@
   <description>
 With this package you can monitor running processes based upon an XML configuration file, XML string, INI file or an array where you define patterns, conditions and actions.
 
-Console::Getopt and XML::DTD must be installed if you want to use the shipped shell scripts 'procwatch' and 'procwatch-lint'.
+XML::Parser must be installed to configure System::ProcWatch by XML, additionally Console::Getopt and XML::DTD must be installed if you want to use the shipped shell scripts 'procwatch' and 'procwatch-lint'.
+
+A simple 'ps' fake for WinNT can be found at http://dev.iworks.at/ps/ps.zip
   </description>
   <maintainers>
     <maintainer>
@@ -18,13 +20,15 @@ Console::Getopt and XML::DTD must be installed if you want to use the shipped sh
     </maintainer>
   </maintainers>
   <release>
-    <version>0.3.1</version>
-    <date>2003-11-27</date>
+    <version>0.4.0</version>
+    <date>2004-02-03</date>
     <state>beta</state>
     <notes>
-* Shell script procwatch-lint was verbose by default.
-* Fixed all '--' in the comment header of procwatch-1_0.dtd, which are not allowed.
-* Added WinNT batch scripts (A *very* simple ps fake for WinNT is available at: http://dev.iworks.at/ps/ps.zip [18k]).
+* Added System_ProcWatch::addConfig()
+* Made System_ProcWatch::setConfig() reinit the _jobs array
+* Got rid of System_ProcWatch_Parser::serializeArray() (using serialize() instead)
+* Fixed WinNT shell scripts (sell arg placeholder were missing)
+* Made dependency to XML_Parser optional
     </notes>
     <filelist>
       <dir role="php" name="/" baseinstalldir="System">
@@ -67,7 +71,7 @@ Console::Getopt and XML::DTD must be installed if you want to use the shipped sh
     </filelist>
   </release>
   <deps>
-    <dep type="pkg" rel="has">XML_Parser</dep>
+    <dep type="pkg" rel="has" optional="yes">XML_Parser</dep>
     <dep type="pkg" rel="has" optional="yes">XML_DTD</dep>
     <dep type="pkg" rel="has" optional="yes">Console_Getopt</dep>
   </deps>
