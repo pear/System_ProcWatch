@@ -72,7 +72,7 @@ class System_ProcWatch_Config_Parser extends XML_Parser
     */
     function System_ProcWatch_Config_Parser()
     {
-        $this->__construct();
+        System_ProcWatch_Config_Parser::__construct();
     }
 
     /**
@@ -83,7 +83,7 @@ class System_ProcWatch_Config_Parser extends XML_Parser
     */
     function __construct()
     {
-        $this->XML_Parser(null, 'func', null);
+        parent::__construct(null, 'func', null);
     }
 
     /**
@@ -97,6 +97,9 @@ class System_ProcWatch_Config_Parser extends XML_Parser
         $this->_conf    = array();
         $this->_cur     = null;
         $this->_pos     = null;
+        
+        // call parent::reset()
+        parent::reset();
     }
     
     /**

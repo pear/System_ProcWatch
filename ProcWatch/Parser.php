@@ -58,7 +58,7 @@ class System_ProcWatch_Parser
     */
     function System_ProcWatch_Parser($ps_args = 'aux')
     {
-        $this->__construct($ps_args);
+        System_ProcWatch_Parser::__construct($ps_args);
     }
     
     /**

@@ -100,7 +100,7 @@ class System_ProcWatch
     */
     function System_ProcWatch($config)
     {
-        $this->__construct($config);
+        System_Procwatch::__construct($config);
     }
     
     /**
