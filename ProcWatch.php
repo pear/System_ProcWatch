@@ -8,7 +8,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@php.net so we can mail you a copy immediately.               |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 2003 Michael Wallner <mike@iworks.at>                  |
+// | Copyright (c) 2003-2004 Michael Wallner <mike@iworks.at>             |
 // +----------------------------------------------------------------------+
 //
 // $Id$
@@ -114,17 +114,6 @@ class System_ProcWatch
     {
         $this->parser = &new System_ProcWatch_Parser;
         $this->setConfig($config);
-    }
-    
-    /**
-    * Get copy (ZE2)
-    *
-    * @access   public
-    * @return   object  System_ProcWatch
-    */
-    function __clone()
-    {
-        return $this;
     }
     
     /**

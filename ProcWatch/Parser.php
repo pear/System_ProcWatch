@@ -8,7 +8,7 @@
 // | to obtain it through the world-wide-web, please send a note to       |
 // | license@php.net so we can mail you a copy immediately.               |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 2003 Michael Wallner <mike@iworks.at>                  |
+// | Copyright (c) 2003-2004 Michael Wallner <mike@iworks.at>             |
 // +----------------------------------------------------------------------+
 //
 // $Id$
@@ -71,17 +71,6 @@ class System_ProcWatch_Parser
     function __construct($ps_args = 'aux')
     {
         $this->_args = $ps_args;
-    }
-    
-    /**
-    * Get copy (ZE2)
-    *
-    * @access   public
-    * @return   object  System_ProcWatch_Parser
-    */
-    function __clone()
-    {
-        return $this;
     }
     
     /**
@@ -180,74 +169,4 @@ class System_ProcWatch_Parser
         
         return $result;
     }    
-
-    /**
-    * Serialize an array
-    * 
-    * This method may seem odd to you unless you know that recursive
-    * function calls eat up memory heading to a segfault. (sic!)
-    *
-    * @access   private
-    * @return   string
-    * @param    array   $array (max depth = 4)
-    */
-    function serializeArray($array)
-    {
-        $str = 'array(';
-        setType($array, 'array');
-        foreach ($array as $key1 => $val1) {
-            if (is_array($val1)) {
-                $str .= $this->_quote($key1) . ' => array(';
-                foreach ($val1 as $key2 => $val2) {
-                    if (is_array($val2)) {
-                        $str .= $this->_quote($key2) . ' => array(';
-                        foreach ($val2 as $key3 => $val3) {
-                            if (is_array($val3)) {
-                                $str .= $this->_quote($key3) . ' => array(';
-                                foreach ($val3 as $key4 => $val4) {
-                                    $str .=  $this->_quote($key4) .' => '.
-                                             $this->_quote($val4) .', ';
-                                }
-                                $str .= '), ';
-                                
-                            } else {
-                                $str .=  $this->_quote($key3) .' => '.
-                                         $this->_quote($val3) .', ';
-                            }
-                        }
-                        $str .= '), ';
-                        
-                    } else {
-                        $str .=  $this->_quote($key2) .' => '.
-                                 $this->_quote($val2) .', ';
-                    }
-                }
-                $str .= '), ';
-                
-            } else {
-                $str .=  $this->_quote($key1) .' => '.
-                         $this->_quote($val1) .', ';
-            }
-        }
-        return $str . ')';
-    }
-
-    /**
-    * Quote an array key/value
-    * 
-    * @access   private
-    * @return   string
-    * @param    mixed   $key
-    */
-    function _quote($key)
-    {
-        if (is_int($key)) {
-            return $key;
-        }
-        if (is_array($key)) {
-            $key = serialize($key);
-        }
-        return '\''. str_replace('\'', '\\\'', $key) .'\'';
-    }
-}
 ?>
