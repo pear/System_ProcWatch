@@ -130,6 +130,7 @@ if ($php_inc) {
 
     if (!@include_once($php_inc)) {
         PEAR::raiseError("File '$php_inc' doesn't exist");
+        // exit
     }
 }
 
@@ -138,11 +139,23 @@ if ($php_inc) {
 * PEAR::raiseError() will call _show_usage() and exit
 */
 if ($xmlfile) {
-    !is_file($xmlfile) && PEAR::raiseError("File '$xmlfile' doesn't exist");
-    $config = System_ProcWatch_Config::fromXmlFile($xmlfile);
+
+    if (is_file($xmlfile)) {
+        $config = System_ProcWatch_Config::fromXmlFile($xmlfile);
+    } else {
+        PEAR::raiseError("File '$xmlfile' doesn't exist");
+        // exit
+    }
+
 } elseif ($inifile) {
-    !is_file($inifile) && PEAR::raiseError("File '$inifile' doesn't exist");
-    $config = System_ProcWatch_Config::fromIniFile($inifile);
+
+    if (is_file($inifile)) {
+        $config = System_ProcWatch_Config::fromIniFile($inifile);
+    } else {
+        PEAR::raiseError("File '$inifile' doesn't exist");
+        // exit
+    }
+
 }
 
 /**
@@ -231,7 +244,7 @@ EXAMPLE:
 
 _SHOW_USAGE;
     
-    exit(0);
+        exit(0);
 
     }
 }

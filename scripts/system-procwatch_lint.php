@@ -88,7 +88,9 @@ $xmlfile = (isset($cl_args['c']) ? $cl_args['c'] : $cl_args['conf']);
 * Show usage with error message if path to config file is invalid
 * PEAR::raiseError() will call _show_usage() and exit
 */
-!is_file($xmlfile) && PEAR::raiseError("File '$xmlfile' doesn't exist");
+if (!is_file($xmlfile)) {
+    PEAR::raiseError("File '$xmlfile' doesn't exist");
+}
 
 /**
 * Get path to dtd file if set
@@ -101,17 +103,14 @@ $dtdfile =  (isset($cl_args['d'])       ? $cl_args['d'] :
 * Show usage with error message if path to dtd file is invalid
 * PEAR::raiseError() will call _show_usage() and exit
 */
-!is_file($dtdfile) && PEAR::raiseError("File '$dtdfile' doesn't exist");
+if (!is_file($dtdfile)) {
+    PEAR::raiseError("File '$dtdfile' doesn't exist");
+}
 
-/**
-* Check for verbosity
-*/
-$verbose = (isset($cl_args['v']) || isset($cl_args['verbose']));
 
 /**
 * Init XML::DTD::XmlValidator
 */
-
 $xmlvalid = &new XML_DTD_XmlValidator;
 
 /**
@@ -124,7 +123,10 @@ if ($xmlvalid->isValid($dtdfile, $xmlfile)) {
 
 } else {
 
-    $verbose && fputs(STDERR, $xmlvalid->getMessage());
+    // echo errors to STDERR if (-v|--verbose) isset
+    if (isset($cl_args['v']) || isset($cl_args['verbose'])) {
+        fputs(STDERR, $xmlvalid->getMessage());
+    }
 
     $str =  "\nERRRRR...\n\nConfiguration from $xmlfile seems ".
             "NOT valid according to $dtdfile\n\n";
@@ -192,7 +194,7 @@ EXAMPLE:
 
 _SHOW_USAGE;
     
-    exit(0);
+        exit(0);
 
     }
 }
