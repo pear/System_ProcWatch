@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<!-- $Revision: 1.2 $ -->
+<!-- $Revision: 1.3 $ -->
 <package version="1.0">
   <name>System_ProcWatch</name>
   <license>PHP</license>
   <summary>Monitor Processes</summary>
   <description>
 With this package you can monitor running processes based upon an XML configuration file, XML string, INI file or an array where you define patterns, conditions and actions.
+
+Console::Getopt and XML::DTD must be installed if you want to use the shipped shell scripts 'procwatch' and 'procwatch-lint'.
   </description>
   <maintainers>
     <maintainer>
@@ -16,11 +18,13 @@ With this package you can monitor running processes based upon an XML configurat
     </maintainer>
   </maintainers>
   <release>
-    <version>0.3</version>
-    <date>2003-11-21</date>
+    <version>0.3.1</version>
+    <date>2003-11-27</date>
     <state>beta</state>
     <notes>
-First PEAR release.
+* Shell script procwatch-lint was verbose by default.
+* Fixed all '--' in the comment header of procwatch-1_0.dtd, which are not allowed.
+* Added WinNT batch scripts (A *very* simple ps fake for WinNT is available at: http://dev.iworks.at/ps/ps.zip [18k]).
     </notes>
     <filelist>
       <dir role="php" name="/" baseinstalldir="System">
@@ -43,6 +47,14 @@ First PEAR release.
         <replace type="pear-config" from="@DATADIR@" to="data_dir"/>
         <replace type="package-info" from="@VERSION@" to="version"/>
         <replace type="package-info" from="@DATE@" to="release_date"/>
+      </file>
+      <file role="script" platform="windows" baseinstalldir="/" name="scripts/system-procwatch.cmd" install-as="procwatch.cmd">
+       <replace type="pear-config" from="@PHP-BIN@" to="php_bin"/>
+       <replace type="pear-config" from="@BIN-DIR@" to="bin_dir"/>
+      </file>
+      <file role="script" platform="windows" baseinstalldir="/" name="scripts/system-procwatch_lint.cmd" install-as="procwatch-lint.cmd">
+       <replace type="pear-config" from="@PHP-BIN@" to="php_bin"/>
+       <replace type="pear-config" from="@BIN-DIR@" to="bin_dir"/>
       </file>
       <file role="doc" name="docs/README.txt" install-as="README.txt"/>
       <file role="doc" name="docs/examples/EXAMPLE.txt" install-as="examples/EXAMPLE.txt"/>
