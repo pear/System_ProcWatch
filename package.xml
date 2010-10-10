@@ -15,9 +15,9 @@ A simple &apos;ps&apos; fake for WinNT can be found at http://dev.iworks.at/ps/p
   <active>yes</active>
  </lead>
  <date>2010-10-10</date>
- <time>13:58:18</time>
+ <time>13:59:31</time>
  <version>
-  <release>0.4.2</release>
+  <release>0.4.3</release>
   <api>0.4.2</api>
  </version>
  <stability>
@@ -113,6 +113,23 @@ SVN layout
   <release>
    <version>
     <release>0.4.2</release>
+    <api>0.4.2</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2010-10-10</date>
+   <license uri="http://www.php.net/license">PHP</license>
+   <notes>
+QA release
+Fixed package.xml
+SVN layout
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.4.3</release>
     <api>0.4.2</api>
    </version>
    <stability>
