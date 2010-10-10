@@ -1,78 +1,145 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!-- $Revision: 1.8 $ -->
-<package version="1.0">
-  <name>System_ProcWatch</name>
-  <license>PHP</license>
-  <summary>Monitor Processes</summary>
-  <description>
-With this package you can monitor running processes based upon an XML configuration file, XML string, INI file or an array where you define patterns, conditions and actions.
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.9.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+http://pear.php.net/dtd/tasks-1.0.xsd
+http://pear.php.net/dtd/package-2.0
+http://pear.php.net/dtd/package-2.0.xsd">
+ <name>System_ProcWatch</name>
+ <channel>pear.php.net</channel>
+ <summary>Monitor Processes</summary>
+ <description>With this package you can monitor running processes based upon an XML configuration file, XML string, INI file or an array where you define patterns, conditions and actions.
 
-XML::Parser must be installed to configure System::ProcWatch by XML, additionally Console::Getopt and XML::DTD must be installed if you want to use the shipped shell scripts 'procwatch' and 'procwatch-lint'.
+XML::Parser must be installed to configure System::ProcWatch by XML, additionally Console::Getopt and XML::DTD must be installed if you want to use the shipped shell scripts &apos;procwatch&apos; and &apos;procwatch-lint&apos;.
 
-A simple 'ps' fake for WinNT can be found at http://dev.iworks.at/ps/ps.zip
-  </description>
-  <maintainers>
-    <maintainer>
-      <user>mike</user>
-      <name>Michael Wallner</name>
-      <email>mike@php.net</email>
-      <role>lead</role>
-    </maintainer>
-  </maintainers>
-  <release>
-    <version>0.4.2</version>
-    <date>2004-06-12</date>
-    <state>beta</state>
-    <notes>
+A simple &apos;ps&apos; fake for WinNT can be found at http://dev.iworks.at/ps/ps.zip
+  
+ </description>
+ <lead>
+  <name>Michael Wallner</name>
+  <user>mike</user>
+  <email>mike@php.net</email>
+  <active>yes</active>
+ </lead>
+ <date>2010-10-10</date>
+ <time>13:34:05</time>
+ <version>
+  <release>0.4.2</release>
+  <api>0.4.2</api>
+ </version>
+ <stability>
+  <release>beta</release>
+  <api>beta</api>
+ </stability>
+ <license uri="http://www.php.net/license">PHP</license>
+ <notes>
 * Fixed Bug #1620 (XML_Parser)
-    </notes>
-    <filelist>
-      <dir role="php" name="/" baseinstalldir="System">
-        <file>ProcWatch.php</file>
-        <dir name="ProcWatch">
-          <file>Parser.php</file>
-          <file>Config.php</file>
-          <dir name="Config">
-            <file>Parser.php</file>
-          </dir>
-        </dir>
-      </dir>
-      <file role="script" baseinstalldir="/" name="scripts/system-procwatch.php" install-as="procwatch">
-        <replace type="pear-config" from="@PHP-BIN@" to="php_bin"/>
-        <replace type="package-info" from="@VERSION@" to="version"/>
-        <replace type="package-info" from="@DATE@" to="release_date"/>
-      </file>
-      <file role="script" baseinstalldir="/" name="scripts/system-procwatch_lint.php" install-as="procwatch-lint">
-        <replace type="pear-config" from="@PHP-BIN@" to="php_bin"/>
-        <replace type="pear-config" from="@DATADIR@" to="data_dir"/>
-        <replace type="package-info" from="@VERSION@" to="version"/>
-        <replace type="package-info" from="@DATE@" to="release_date"/>
-      </file>
-      <file role="script" platform="windows" baseinstalldir="/" name="scripts/system-procwatch.cmd" install-as="procwatch.cmd">
-       <replace type="pear-config" from="@PHP-BIN@" to="php_bin"/>
-       <replace type="pear-config" from="@BIN-DIR@" to="bin_dir"/>
-      </file>
-      <file role="script" platform="windows" baseinstalldir="/" name="scripts/system-procwatch_lint.cmd" install-as="procwatch-lint.cmd">
-       <replace type="pear-config" from="@PHP-BIN@" to="php_bin"/>
-       <replace type="pear-config" from="@BIN-DIR@" to="bin_dir"/>
-      </file>
-      <file role="doc" name="docs/README.txt" install-as="README.txt"/>
-      <file role="doc" name="docs/examples/EXAMPLE.txt" install-as="examples/EXAMPLE.txt"/>
-      <file role="doc" name="docs/examples/example.xml" install-as="examples/example.xml">
-        <replace type="pear-config" from="@DATADIR@" to="data_dir"/>
-      </file>
-      <file role="doc" name="docs/examples/example.ini" install-as="examples/example.ini"/>
-      <file role="data" name="data/procwatch-1_0.dtd" install-as="procwatch-1_0.dtd">
-      </file>
-    </filelist>
-  </release>
-  <deps>
-    <dep type="pkg" rel="has" optional="no">PEAR</dep>
-    <dep type="pkg" rel="ge" optional="yes" version="1.1.0">XML_Parser</dep>
-    <dep type="pkg" rel="has" optional="yes">XML_DTD</dep>
-    <dep type="pkg" rel="has" optional="yes">Console_Getopt</dep>
-    <dep type="ext" rel="has" optional="no">pcre</dep>
-    <dep type="php" rel="ge" optional="no" version="4.0.2" />
-    <dep type="php" rel="ge" optional="yes" version="4.3.0" />
-  </deps>
+ </notes>
+ <contents>
+  <dir baseinstalldir="/" name="/">
+   <dir name="data">
+    <file baseinstalldir="System" name="procwatch-1_0.dtd" role="data" />
+   </dir> <!-- /data -->
+   <dir name="docs">
+    <dir name="examples">
+     <file baseinstalldir="System" name="example.ini" role="doc" />
+     <file baseinstalldir="System" name="EXAMPLE.txt" role="doc" />
+     <file baseinstalldir="System" name="example.xml" role="doc">
+      <tasks:replace from="@DATADIR@" to="data_dir" type="pear-config" />
+     </file>
+    </dir> <!-- /docs/examples -->
+    <file baseinstalldir="System" name="README.txt" role="doc" />
+   </dir> <!-- /docs -->
+   <dir name="ProcWatch">
+    <dir name="Config">
+     <file baseinstalldir="System" name="Parser.php" role="php" />
+    </dir> <!-- /ProcWatch/Config -->
+    <file baseinstalldir="System" name="Config.php" role="php" />
+    <file baseinstalldir="System" name="Parser.php" role="php" />
+   </dir> <!-- /ProcWatch -->
+   <dir name="scripts">
+    <file baseinstalldir="/" name="system-procwatch.cmd" role="script">
+     <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
+     <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
+    </file>
+    <file baseinstalldir="/" name="system-procwatch.php" role="script">
+     <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
+     <tasks:replace from="@VERSION@" to="version" type="package-info" />
+     <tasks:replace from="@DATE@" to="release_date" type="package-info" />
+    </file>
+    <file baseinstalldir="/" name="system-procwatch_lint.cmd" role="script">
+     <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
+     <tasks:replace from="@BIN-DIR@" to="bin_dir" type="pear-config" />
+    </file>
+    <file baseinstalldir="/" name="system-procwatch_lint.php" role="script">
+     <tasks:replace from="@PHP-BIN@" to="php_bin" type="pear-config" />
+     <tasks:replace from="@DATADIR@" to="data_dir" type="pear-config" />
+     <tasks:replace from="@VERSION@" to="version" type="package-info" />
+     <tasks:replace from="@DATE@" to="release_date" type="package-info" />
+    </file>
+   </dir> <!-- /scripts -->
+   <file baseinstalldir="System" name="ProcWatch.php" role="php" />
+  </dir> <!-- / -->
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>4.0.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.0b1</min>
+   </pearinstaller>
+   <package>
+    <name>PEAR</name>
+    <channel>pear.php.net</channel>
+   </package>
+   <extension>
+    <name>pcre</name>
+   </extension>
+  </required>
+  <optional>
+   <package>
+    <name>XML_Parser</name>
+    <channel>pear.php.net</channel>
+    <min>1.1.0</min>
+   </package>
+   <package>
+    <name>XML_DTD</name>
+    <channel>pear.php.net</channel>
+   </package>
+   <package>
+    <name>Console_Getopt</name>
+    <channel>pear.php.net</channel>
+   </package>
+  </optional>
+ </dependencies>
+ <phprelease>
+  <installconditions>
+   <os>
+    <name>windows</name>
+   </os>
+  </installconditions>
+  <filelist>
+   <install as="procwatch" name="scripts/system-procwatch.php" />
+   <install as="procwatch-lint" name="scripts/system-procwatch_lint.php" />
+   <install as="procwatch.cmd" name="scripts/system-procwatch.cmd" />
+   <install as="procwatch-lint.cmd" name="scripts/system-procwatch_lint.cmd" />
+   <install as="README.txt" name="docs/README.txt" />
+   <install as="examples/EXAMPLE.txt" name="docs/examples/EXAMPLE.txt" />
+   <install as="examples/example.xml" name="docs/examples/example.xml" />
+   <install as="examples/example.ini" name="docs/examples/example.ini" />
+   <install as="procwatch-1_0.dtd" name="data/procwatch-1_0.dtd" />
+  </filelist>
+ </phprelease>
+ <phprelease>
+  <filelist>
+   <install as="procwatch" name="scripts/system-procwatch.php" />
+   <install as="procwatch-lint" name="scripts/system-procwatch_lint.php" />
+   <install as="README.txt" name="docs/README.txt" />
+   <install as="examples/EXAMPLE.txt" name="docs/examples/EXAMPLE.txt" />
+   <install as="examples/example.xml" name="docs/examples/example.xml" />
+   <install as="examples/example.ini" name="docs/examples/example.ini" />
+   <install as="procwatch-1_0.dtd" name="data/procwatch-1_0.dtd" />
+   <ignore name="scripts/system-procwatch.cmd" />
+   <ignore name="scripts/system-procwatch_lint.cmd" />
+  </filelist>
+ </phprelease>
 </package>
